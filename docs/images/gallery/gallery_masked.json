@@ -1,0 +1,27 @@
+{
+  "name": "gallery_masked",
+  "formula": "sin(min(x*sin(y),y*sin(x))) > cos(max(x*cos(y),y*cos(x)))+(2*(x-y)^2+(x+y-6)^2)/40-1/30*(12-x-y)",
+  "bounds": [
+    -10.0,
+    10.0,
+    -10.0,
+    10.0
+  ],
+  "render_bounds": [
+    -6.0,
+    6.0,
+    -3.0,
+    9.0
+  ],
+  "resolution": 256,
+  "source_example": "Single Relation/Solid/Masked.gqs",
+  "mapping": "direct",
+  "state": "complete",
+  "undecided": 0,
+  "elapsed_seconds": 33.17224924999755,
+  "budget_seconds": 45.0,
+  "graphing_revision": "f783e6af8ac7daea7378c573e37fb584bd1a2594",
+  "domain": "strict",
+  "colors": "white absent; dark blue present; amber unresolved",
+  "sha256": "dc2d07946f8e63e5e907b9a929a01e5e62c2fe61974662e7846dde5db81df7fe"
+}

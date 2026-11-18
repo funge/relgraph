@@ -1,0 +1,27 @@
+{
+  "name": "gallery_arachnid",
+  "formula": "sin(x)+cos(y)+sin(x*cos(y)+y*sin(x)) > 0",
+  "bounds": [
+    -10.0,
+    10.0,
+    -10.0,
+    10.0
+  ],
+  "render_bounds": [
+    -10.0,
+    10.0,
+    -10.0,
+    10.0
+  ],
+  "resolution": 256,
+  "source_example": "Single Relation/Solid/Arachnid.gqs",
+  "mapping": "direct",
+  "state": "complete",
+  "undecided": 0,
+  "elapsed_seconds": 86.71166124998126,
+  "budget_seconds": 90.0,
+  "graphing_revision": "f783e6af8ac7daea7378c573e37fb584bd1a2594",
+  "domain": "strict",
+  "colors": "white absent; dark blue present; amber unresolved",
+  "sha256": "a548fc1eb175d15ae1ffffe54a088199ccc15b51cd4c9211759ea419a3954d31"
+}

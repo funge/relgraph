@@ -1,0 +1,27 @@
+{
+  "name": "gallery_margarita_black",
+  "formula": "mod(sqrt(x^2+y^2)-7/2*atan2(y,x)+sin(x)+cos(y),pi) < pi/2",
+  "bounds": [
+    -10.0,
+    10.0,
+    -10.0,
+    10.0
+  ],
+  "render_bounds": [
+    -10.0,
+    10.0,
+    -10.0,
+    10.0
+  ],
+  "resolution": 512,
+  "source_example": "Multiple Relations/Margarita.gqs",
+  "mapping": "component",
+  "state": "complete",
+  "undecided": 0,
+  "elapsed_seconds": 83.01407683402067,
+  "budget_seconds": 90.0,
+  "graphing_revision": "f783e6af8ac7daea7378c573e37fb584bd1a2594",
+  "domain": "strict",
+  "colors": "white absent; dark blue present; amber unresolved",
+  "sha256": "b8f69279b32e7c09ae34cbffb5fbd0dda4db2268ef16f02dc61c3274d9b7400b"
+}

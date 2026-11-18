@@ -1,0 +1,27 @@
+{
+  "name": "rogue_spike",
+  "formula": "y = (x^2-3*x)/(x-3.001)",
+  "bounds": [
+    -10.0,
+    10.0,
+    -10.0,
+    10.0
+  ],
+  "render_bounds": [
+    -10.0,
+    10.0,
+    -10.0,
+    10.0
+  ],
+  "resolution": 512,
+  "source_example": "Single Relation/Abstract/Traditionally Difficult/Spike.gqs",
+  "mapping": "direct",
+  "state": "complete",
+  "undecided": 0,
+  "elapsed_seconds": 0.9821019590017386,
+  "budget_seconds": 25.0,
+  "graphing_revision": "f783e6af8ac7daea7378c573e37fb584bd1a2594",
+  "domain": "strict",
+  "colors": "white absent; dark blue present; amber unresolved",
+  "sha256": "1d7c2f44f47af68c73fbe065fabe38f3afd1834658cf1d384f71d043af27c054"
+}

@@ -1,0 +1,71 @@
+{
+  "qualified_product_revision": "13d7d3a8976fb48bdc3d8fc725f328b51370a7e1",
+  "native_qualification_sha256": "05fc875ff491d733449ef7db152e637581d69a68cf4bb72539ccb6a7aaff1df8",
+  "platform": "macOS Apple arm64; Apple Clang 21; GMP 6.3.0; MPFR 4.2.2",
+  "modes": {
+    "optimized": {
+      "passed": true,
+      "status": "completed",
+      "probe": "build/test_common_factor",
+      "cases": 2410,
+      "input_bits_sha256": "6f61fc7a3c2de88ff06f7f6b5fda07fd90feea3a15ed919171d90d0cfa6d8143",
+      "scope": "Whole-interval returned-bound obligations per fixture plus bitwise fallback. No consumer rendering or universal implementation proof.",
+      "inputs": {
+        "src/common_factor.c": "0cc7ed62ebd7d01490d22ebc12982d5ed994cb4bd5d350f83718ffe8597baff9",
+        "include/graphing/common_factor.h": "8b05c79aa90dfaee371bbeb4eabbbf44095fdbfdfc3a58eb098978d259659581",
+        "tests/test_common_factor.c": "d4086b7d6a74e2d9c7297e9247fe09e06a0000ec7cd31bd8aa63e42c2bb50872",
+        "tools/check-gcd-unit-bound.py": "4a8e9c3f9d0502f4f196323d39ba7d425c9220197f5794773c6d504b0e22c8e2"
+      },
+      "probe_sha256": "36eed32b4b818317ef238077be67dc6d789e731ac8ed34788b4ed35fbf2a491f",
+      "counts": {
+        "fallback": 60,
+        "unchanged": 1019,
+        "refined": 1331
+      },
+      "output_bits_sha256": "de20c6b9dd0a13f7e65fd775a12a382aa53a66ce6051b2e060e3d3172e08fab3"
+    },
+    "debug": {
+      "passed": true,
+      "status": "completed",
+      "probe": "build/qualification/debug/test_common_factor",
+      "cases": 2410,
+      "input_bits_sha256": "6f61fc7a3c2de88ff06f7f6b5fda07fd90feea3a15ed919171d90d0cfa6d8143",
+      "scope": "Whole-interval returned-bound obligations per fixture plus bitwise fallback. No consumer rendering or universal implementation proof.",
+      "inputs": {
+        "src/common_factor.c": "0cc7ed62ebd7d01490d22ebc12982d5ed994cb4bd5d350f83718ffe8597baff9",
+        "include/graphing/common_factor.h": "8b05c79aa90dfaee371bbeb4eabbbf44095fdbfdfc3a58eb098978d259659581",
+        "tests/test_common_factor.c": "d4086b7d6a74e2d9c7297e9247fe09e06a0000ec7cd31bd8aa63e42c2bb50872",
+        "tools/check-gcd-unit-bound.py": "4a8e9c3f9d0502f4f196323d39ba7d425c9220197f5794773c6d504b0e22c8e2"
+      },
+      "probe_sha256": "779a81fbfa02ae36106455fffdcfee24c1b57d4cbf769933a909a80909bfa6ec",
+      "counts": {
+        "fallback": 60,
+        "unchanged": 1019,
+        "refined": 1331
+      },
+      "output_bits_sha256": "de20c6b9dd0a13f7e65fd775a12a382aa53a66ce6051b2e060e3d3172e08fab3"
+    },
+    "sanitizer": {
+      "passed": true,
+      "status": "completed",
+      "probe": "build/qualification/sanitizer/test_common_factor",
+      "cases": 2410,
+      "input_bits_sha256": "6f61fc7a3c2de88ff06f7f6b5fda07fd90feea3a15ed919171d90d0cfa6d8143",
+      "scope": "Whole-interval returned-bound obligations per fixture plus bitwise fallback. No consumer rendering or universal implementation proof.",
+      "inputs": {
+        "src/common_factor.c": "0cc7ed62ebd7d01490d22ebc12982d5ed994cb4bd5d350f83718ffe8597baff9",
+        "include/graphing/common_factor.h": "8b05c79aa90dfaee371bbeb4eabbbf44095fdbfdfc3a58eb098978d259659581",
+        "tests/test_common_factor.c": "d4086b7d6a74e2d9c7297e9247fe09e06a0000ec7cd31bd8aa63e42c2bb50872",
+        "tools/check-gcd-unit-bound.py": "4a8e9c3f9d0502f4f196323d39ba7d425c9220197f5794773c6d504b0e22c8e2"
+      },
+      "probe_sha256": "3d788cd09f58d8ff7218554159910a5f694552501f67abc7244b2b0f70535a28",
+      "counts": {
+        "fallback": 60,
+        "unchanged": 1019,
+        "refined": 1331
+      },
+      "output_bits_sha256": "de20c6b9dd0a13f7e65fd775a12a382aa53a66ce6051b2e060e3d3172e08fab3"
+    }
+  },
+  "scope": "Native qualification, not complete consumer qualification or native GrafEq equivalence. Final documentation-only additions do not alter these recorded source inputs."
+}

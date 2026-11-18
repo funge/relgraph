@@ -1,0 +1,27 @@
+{
+  "name": "rogue_circular_spike",
+  "formula": "((x^2-3*x)/(x-3.001))^2+((y^2-3*y)/(y-3.001))^2 = 81",
+  "bounds": [
+    -10.0,
+    10.0,
+    -10.0,
+    10.0
+  ],
+  "render_bounds": [
+    -10.0,
+    10.0,
+    -10.0,
+    10.0
+  ],
+  "resolution": 512,
+  "source_example": "Single Relation/Abstract/Traditionally Difficult/O Spike.gqs",
+  "mapping": "direct",
+  "state": "complete",
+  "undecided": 0,
+  "elapsed_seconds": 14.531525333004538,
+  "budget_seconds": 25.0,
+  "graphing_revision": "f783e6af8ac7daea7378c573e37fb584bd1a2594",
+  "domain": "strict",
+  "colors": "white absent; dark blue present; amber unresolved",
+  "sha256": "9ac0b3fe83b398fe1c0fe1150f471e91804d6da921e6bf77aaf10390e212e8ef"
+}
