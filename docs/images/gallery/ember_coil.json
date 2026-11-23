@@ -1,0 +1,37 @@
+{
+  "name": "ember_coil",
+  "image": "ember_coil.png",
+  "source_example": "Multiple Relations/Margarita.gqs",
+  "mapping": "ordered composite",
+  "render_bounds": [
+    -32.000528438588184,
+    32.00045351300323,
+    -32.00028399275002,
+    32.00069795884139
+  ],
+  "width": 256,
+  "height": 256,
+  "domain": "strict",
+  "state": "complete",
+  "undecided": 0,
+  "elapsed_seconds": 141.36,
+  "budget_seconds": 150,
+  "background": "#ffffff",
+  "layers": [
+    {
+      "name": "black",
+      "state": "complete",
+      "undecided": 0,
+      "color": "#000000",
+      "relation": "mod(sqrt(x^2+y^2)-7/2*atan2(y,x)+sin(x)+cos(y),pi) < pi/2"
+    },
+    {
+      "name": "red",
+      "state": "complete",
+      "undecided": 0,
+      "color": "#ff0000",
+      "relation": "mod(sqrt(x^2+y^2)-7/2*atan2(y,x)+sin(x)+cos(y),7*pi) < pi/2"
+    }
+  ],
+  "sha256": "bd26e75461b151d99c58f2b25c861b364e7a8e6d117f08cfc00a5bb49445fab1"
+}

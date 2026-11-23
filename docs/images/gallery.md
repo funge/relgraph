@@ -1,8 +1,8 @@
 # gallery equations and render records
 
-These images use relgraph’s real application engine at graphing revision `f783e6af8ac7daea7378c573e37fb584bd1a2594`. The attribution worktree changes prose only, not rendering. The source catalog is `python/graphing/data/grafeq-catalog.yaml`; app adaptations are in `apps/flet/src/examples.py`.
+The single-relation captures use relgraph’s real application engine at graphing revision `f783e6af8ac7daea7378c573e37fb584bd1a2594`. The attribution worktree changes prose only, not rendering. The source catalog is `python/graphing/data/grafeq-catalog.yaml`; app adaptations are in `apps/flet/src/examples.py`.
 
-All images use strict domain interpretation and equal world units per pixel. White means proven absent, dark blue proven present, amber unresolved. README images may be scaled by the browser; source PNGs preserve the exact raster. These are illustration captures, not performance benchmarks.
+All images use strict domain interpretation and equal world units per pixel. For the single-relation captures, white means proven absent, dark blue proven present, and amber unresolved. README images may be scaled by the browser; source PNGs preserve the exact raster. These are illustration captures, not performance benchmarks.
 
 ## reproduction
 
@@ -55,6 +55,19 @@ python docs/images/render-gallery.py /path/to/graphing --one gallery_margarita_b
 ```
 
 [image](gallery/gallery_margarita_black.png) · [capture record and SHA-256](gallery/gallery_margarita_black.json)
+
+## ember coil
+
+Source: `Multiple Relations/Margarita.gqs`. Mapping: ordered composite, black behind red.
+
+```text
+black: mod(sqrt(x^2+y^2)-7/2*atan2(y,x)+sin(x)+cos(y),pi) < pi/2
+red:   mod(sqrt(x^2+y^2)-7/2*atan2(y,x)+sin(x)+cos(y),7*pi) < pi/2
+```
+
+Both layers use the same viewport: `[-32.000528438588184, 32.00045351300323, -32.00028399275002, 32.00069795884139]`. Raster: 256 × 256. Both layers are **complete** with **0** unresolved pixels. Capture budget: 150 seconds. The app renders the two relations independently in strict domain mode, then composites them in source order on white. The red layer is painted over the black where both are present.
+
+[image](gallery/ember_coil.png) · [capture record and SHA-256](gallery/ember_coil.json)
 
 ## arachnid
 
