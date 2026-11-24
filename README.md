@@ -52,9 +52,7 @@ relgraph is an independent implementation of these ideas for modern platforms, w
 
 ## numeric library
 
-this repository contains relgraph's numeric core: four C modules for binary64
-interval operations. the app, parser and complete graph renderer live in a
-separate repository.
+this repository contains relgraph's numeric core: four C modules for binary64 interval operations. the app, parser and complete graph renderer live in a separate repository for now. over time, the plan is to open source everything except for app-specific elements such as the UI.
 
 see [building](docs/building.md), the [numeric contract](docs/numeric-contract.md)
 and [dependency notices](notices/README.md).
