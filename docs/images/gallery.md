@@ -1,6 +1,6 @@
 # gallery equations and render records
 
-The single-relation captures use relgraph’s real application engine at graphing revision `f783e6af8ac7daea7378c573e37fb584bd1a2594`. The attribution worktree changes prose only, not rendering. The source catalog is `python/graphing/data/grafeq-catalog.yaml`; app adaptations are in `apps/flet/src/examples.py`.
+The original single-relation captures use relgraph’s real application engine at graphing revision `f783e6af8ac7daea7378c573e37fb584bd1a2594`. The attribution worktree changes prose only, not rendering. The source catalog is `python/graphing/data/grafeq-catalog.yaml`; app adaptations are in `apps/flet/src/examples.py`.
 
 All images use strict domain interpretation and equal world units per pixel. For the single-relation captures, white means proven absent, dark blue proven present, and amber unresolved. README images may be scaled by the browser; source PNGs preserve the exact raster. These are illustration captures, not performance benchmarks.
 
@@ -23,6 +23,28 @@ python docs/images/render-gallery.py /path/to/graphing --one rogue_spike --resol
 ```
 
 [image](gallery/rogue_spike.png) · [capture record and SHA-256](gallery/rogue_spike.json)
+
+## ever-faster waves
+
+an authored README illustration, not a new app preset or a copied GrafEq image:
+
+```text
+y = sin(1/x)
+```
+
+bounds: `[-1.2, 1.2, -1.2, 1.2]`. raster: 512 × 512. strict domain;
+`x = 0` remains undefined. state: **complete**; unresolved pixels: **0**.
+the central band is the finite raster covering increasingly dense oscillations,
+not a claim that the function is defined on the vertical line at zero.
+the PNG is the unmodified output of relgraph's application render worker at
+`f9fd0ee0f3d02a1cc8b80ffb1c794d686066368b`, with a 30-second capture budget.
+this is an illustration, not a timing benchmark.
+
+```sh
+python docs/images/render-gallery.py /path/to/graphing --one sine_reciprocal_argument --resolution 512 --seconds 30
+```
+
+[image](gallery/sine_reciprocal_argument.png) · [capture record and SHA-256](gallery/sine_reciprocal_argument.json)
 
 ## circular spike
 
@@ -103,6 +125,9 @@ python docs/images/render-gallery.py /path/to/graphing --one gallery_masked --re
 
 ## selection notes
 
-Spike and circular spike illustrate narrow branches near poles. Margarita is one component of the source’s multi-relation example; arachnid and masked are single relations. Frontispiece and chrome were trialled but not selected: their detail remained too unresolved within the bounded rendering attempts. Digital bacteria’s body component was replaced by the more visually varied arachnid.
+The README pairs spike’s narrow pole branches with increasingly dense sine
+oscillations. Circular spike is retained here as historical capture evidence,
+but is no longer featured: it repeated the pole example and was harder to read.
+There is no second reciprocal-argument sine row in the README. Margarita is one component of the source’s multi-relation example; arachnid and masked are single relations. Frontispiece and chrome were trialled but not selected: their detail remained too unresolved within the bounded rendering attempts. Digital bacteria’s body component was replaced by the more visually varied arachnid.
 
 The README credits GrafEq’s definitions and names. That attribution does not resolve the separate question of catalog reuse permission.
