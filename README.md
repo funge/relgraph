@@ -31,9 +31,9 @@ each image below comes directly from the relation or relations beside it.
 
 | graph | relation and idea |
 | --- | --- |
-| <img src="docs/images/gallery/ember_coil.png" width="320" alt="ember coil: black rippling bands and a red spiral"> | **ember coil**<br><br>black: `mod(√(x²+y²) − 7/2 atan2(y,x) + sin(x) + cos(y), π) < π/2`<br>red: `mod(√(x²+y²) − 7/2 atan2(y,x) + sin(x) + cos(y), 7π) < π/2`<br><br>radius and angle wind into a spiral; sine and cosine ripple its edges. |
 | <img src="docs/images/gallery/gallery_arachnid.png" width="320" alt="continuous web: interlocking organic shapes from nested trigonometric waves"> | **continuous web**<br><br>`sin(x) + cos(y) + sin(x cos(y) + y sin(x)) > 0`<br><br>nested waves interfere to form an interlocking, almost living pattern. |
 | <img src="docs/images/gallery/gallery_masked.png" width="320" alt="scattered cutouts: a face-like pattern made from trigonometric inequalities"> | **scattered cutouts**<br><br>`sin(min(x*sin(y),y*sin(x))) > cos(max(x*cos(y),y*cos(x)))+(2*(x-y)^2+(x+y-6)^2)/40-1/30*(12-x-y)`<br><br>sine, cosine, minimum and maximum create a face-like pattern inside a shaped envelope. |
+| <img src="docs/images/gallery/ember_coil.png" width="320" alt="ember coil: black rippling bands and a red spiral"> | **ember coil**<br><br>black: `mod(√(x²+y²) − 7/2 atan2(y,x) + sin(x) + cos(y), π) < π/2`<br>red: `mod(√(x²+y²) − 7/2 atan2(y,x) + sin(x) + cos(y), 7π) < π/2`<br><br>radius and angle wind into a spiral; sine and cosine ripple its edges. |
 
 ## inspiration and foundations
 
@@ -75,6 +75,6 @@ separate commercial licensing for relgraph's original code is available on reque
 ## related research
 
 [GIA — generalized interval arithmetic](https://github.com/funge/gia) is the
-independent lean research project proving properties of generalized interval
+independent Lean research project proving properties of generalized interval
 arithmetic. relgraph is an initial application and proof target; building or
 using relgraph does not depend on GIA.
