@@ -64,6 +64,7 @@ licensed under the [GNU Affero General Public License, version 3 only](LICENSE)
 (`AGPL-3.0-only`). third-party dependencies retain their own licenses; see
 [notices](notices/README.md).
 
+[GMP and MPFR relinking materials for relgraph iOS 1.1 (737)](https://github.com/funge/relgraph/releases/download/ios-1.1-737-relink-kit/relgraph-ios-1.1-737-relink-kit.tar.xz);
 [GMP and MPFR relinking materials for relgraph iOS 1.0 (733)](https://github.com/funge/relgraph/releases/download/ios-1.0-733-relink-kit/relgraph-ios-1.0-733-relink-kit.tar.xz).
 
 the rights holder for the relgraph core separately permits the core to be included and distributed through TestFlight and the App Store as part of the official relgraph iPhone app, without requiring the rest of the app to be licensed under AGPL. this permission applies only to the official relgraph iPhone app. the public repository remains licensed under AGPL-3.0-only, and third-party licenses are unchanged.
