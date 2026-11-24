@@ -18,7 +18,7 @@ these examples show features that ordinary point-sampling approaches can miss.
 | graph | what to look for |
 | --- | --- |
 | <img src="docs/images/gallery/rogue_spike.png" width="320" alt="near-cancelled pole: a diagonal curve with narrow branches near a pole"> | **near-cancelled pole** · `y = (x² − 3x)/(x − 3.001)`<br><br>almost a straight line—until the tiny difference between `3` and `3.001` sends two branches off the screen. a fixed set of x samples can step over the feature. |
-| <img src="docs/images/gallery/rogue_circular_spike.png" width="320" alt="circle with poles: a nearly circular curve with thin horizontal and vertical branches"> | **circle with poles** · `f(x)² + f(y)² = 81`, where `f(t) = (t² − 3t)/(t − 3.001)`<br><br>the same narrow feature appears in an implicit relation: the circle-like outline is only part of the graph. the long, thin branches belong too. |
+| <img src="docs/images/gallery/sine_reciprocal_argument.png" width="320" alt="sine of 1 over x: waves oscillate faster and become densely packed near zero"> | **ever-faster waves** · `y = sin(1/x)`<br><br>the oscillations accelerate without bound as x approaches zero. fixed samples can miss whole waves. the dense center contains more oscillations than the image can separate; the relation is undefined at `x = 0`. |
 
 interval arithmetic is part of the method, alongside domain checks and
 mathematical proofs. difficult regions may keep refining; unresolved pixels

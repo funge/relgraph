@@ -17,7 +17,7 @@ import time
 
 CASES = (
     'rogue_spike', 'rogue_circular_spike', 'gallery_margarita_black',
-    'gallery_arachnid', 'gallery_masked',
+    'gallery_arachnid', 'gallery_masked', 'sine_reciprocal_argument',
 )
 
 
@@ -29,10 +29,17 @@ def render(args):
     from render_worker import make_request
     from graphing.formulas.grafeq_catalog import load_grafeq_catalog
 
-    item = load_examples()[args.one]
-    source = load_grafeq_catalog().builtins_by_name[args.one]
+    if args.one == 'sine_reciprocal_argument':
+        # README illustration only; deliberately not an app preset.
+        formula, bounds = 'y = sin(1/x)', (-1.2, 1.2, -1.2, 1.2)
+        source_example, mapping = None, 'authored README example'
+    else:
+        item = load_examples()[args.one]
+        source = load_grafeq_catalog().builtins_by_name[args.one]
+        formula, bounds = item.formula, item.bounds
+        source_example, mapping = source.example_path, source.mapping
     worker = RenderWorker()
-    request = make_request(item.formula, args.bounds or item.bounds, args.resolution)
+    request = make_request(formula, args.bounds or bounds, args.resolution)
     worker.submit(request)
     deadline = time.monotonic() + args.seconds
     update = None
@@ -49,9 +56,9 @@ def render(args):
         png = update.png  # Exact worker pixels: white absent, blue present, amber unresolved.
         (output / f'{args.one}.png').write_bytes(png)
         record = dict(
-            name=args.one, formula=item.formula, bounds=item.bounds,
+            name=args.one, formula=formula, bounds=bounds,
             render_bounds=request.bounds, resolution=args.resolution,
-            source_example=source.example_path, mapping=source.mapping,
+            source_example=source_example, mapping=mapping,
             state=update.snapshot.state.value, undecided=update.snapshot.undecided,
             elapsed_seconds=update.elapsed, budget_seconds=args.seconds,
             graphing_revision=subprocess.check_output(

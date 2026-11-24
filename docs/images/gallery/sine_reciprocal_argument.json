@@ -1,0 +1,27 @@
+{
+  "name": "sine_reciprocal_argument",
+  "formula": "y = sin(1/x)",
+  "bounds": [
+    -1.2,
+    1.2,
+    -1.2,
+    1.2
+  ],
+  "render_bounds": [
+    -1.2,
+    1.2,
+    -1.2,
+    1.2
+  ],
+  "resolution": 512,
+  "source_example": null,
+  "mapping": "authored README example",
+  "state": "complete",
+  "undecided": 0,
+  "elapsed_seconds": 0.4752310409967322,
+  "budget_seconds": 30.0,
+  "graphing_revision": "f9fd0ee0f3d02a1cc8b80ffb1c794d686066368b",
+  "domain": "strict",
+  "colors": "white absent; dark blue present; amber unresolved",
+  "sha256": "2ee683e9d8907028b4dacfee9fbb60c2caf0d02fc80e0bf2191b87213a845b41"
+}
