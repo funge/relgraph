@@ -82,8 +82,11 @@ The mathematical target is GIA's pinned
 [`DiscreteDemotion.lean`](https://github.com/funge/gia/blob/2ecbb161bd136fd2ad51c432c0e70dc62b668ed1/DiscreteDemotion.lean)
 and its [specification](https://github.com/funge/gia/blob/2ecbb161bd136fd2ad51c432c0e70dc62b668ed1/DISCRETE_DEMOTION.md):
 `down_greatest`, `up_least`, and `least` describe extremal endpoints and least
-outward hulls, including the finite binary64 value family. Those are mathematical
-results, **not a proof of this C implementation**, GMP, the compiler, native
+outward hulls, including the finite binary64 value family. The related
+[`EndpointOptimality.lean` specification](https://github.com/funge/gia/blob/2ecbb161bd136fd2ad51c432c0e70dc62b668ed1/ENDPOINT_OPTIMALITY.md)
+characterizes when sound decoded endpoints equal that least hull; its
+`interval_exact_iff` specializes to ordered closed ideal intervals. These are
+mathematical results, **not a proof of this C implementation**, GMP, the compiler, native
 bit transport or `nextafter`. No Lean build or runtime dependency is added.
 
 `tests/test_exact_inputs.c` builds an independent exact oracle from decimal
