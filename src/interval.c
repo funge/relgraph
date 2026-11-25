@@ -8,6 +8,7 @@
 
 #include <fenv.h>
 #include <float.h>
+#include <gmp.h>
 #include <math.h>
 #include <mpfr.h>
 #include <stdint.h>
@@ -304,6 +305,80 @@ gi_interval gi_interval_make(double lo, double hi)
 gi_interval gi_interval_point(double value)
 {
     return gi_interval_make(value, value);
+}
+
+/* Import fixed-width words without assuming unsigned long is 64 bits or
+   negating INT64_MIN. All callers reject a zero denominator first. */
+static void gi_rational64_set(mpq_t value, int64_t numerator, uint64_t denominator)
+{
+    uint64_t magnitude = numerator < 0
+        ? UINT64_C(0) - (uint64_t)numerator : (uint64_t)numerator;
+    mpz_import(mpq_numref(value), 1, 1, sizeof magnitude, 0, 0, &magnitude);
+    mpz_import(mpq_denref(value), 1, 1, sizeof denominator, 0, 0, &denominator);
+    if (numerator < 0) {
+        mpz_neg(mpq_numref(value), mpq_numref(value));
+    }
+    mpq_canonicalize(value);
+}
+
+/* GMP specifies mpq_get_d as truncation toward zero. For this bounded input
+   format the result is always finite and normal (or exactly zero), avoiding
+   GMP's system-dependent overflow/underflow cases. Compare its exact value
+   before stepping one adjacent binary64 value in the requested direction. */
+static double gi_rational64_endpoint(mpq_srcptr value, bool upper)
+{
+    if (mpq_sgn(value) == 0) {
+        return 0.0;
+    }
+    double endpoint = mpq_get_d(value);
+    mpq_t represented;
+    mpq_init(represented);
+    mpq_set_d(represented, endpoint);
+    int comparison = mpq_cmp(represented, value);
+    mpq_clear(represented);
+    if (upper ? comparison < 0 : comparison > 0) {
+        endpoint = nextafter(endpoint, upper ? INFINITY : -INFINITY);
+    }
+    return endpoint;
+}
+
+gi_interval gi_interval_from_rational64_bounds(
+    int64_t lo_numerator, uint64_t lo_denominator,
+    int64_t hi_numerator, uint64_t hi_denominator)
+{
+    if (lo_denominator == 0 || hi_denominator == 0) {
+        return gi_interval_empty();
+    }
+    mpq_t lo, hi;
+    mpq_inits(lo, hi, (mpq_ptr)0);
+    gi_rational64_set(lo, lo_numerator, lo_denominator);
+    gi_rational64_set(hi, hi_numerator, hi_denominator);
+    gi_interval result = gi_interval_empty();
+    /* Validate exact order, not order after two lossy conversions. */
+    if (mpq_cmp(lo, hi) <= 0) {
+        result = (gi_interval){
+            gi_rational64_endpoint(lo, false),
+            gi_rational64_endpoint(hi, true)
+        };
+    }
+    mpq_clears(lo, hi, (mpq_ptr)0);
+    return result;
+}
+
+gi_interval gi_interval_from_rational64(int64_t numerator, uint64_t denominator)
+{
+    return gi_interval_from_rational64_bounds(
+        numerator, denominator, numerator, denominator);
+}
+
+gi_interval gi_interval_from_int64(int64_t value)
+{
+    return gi_interval_from_rational64(value, 1);
+}
+
+gi_interval gi_interval_from_int64_bounds(int64_t lo, int64_t hi)
+{
+    return gi_interval_from_rational64_bounds(lo, 1, hi, 1);
 }
 
 gi_interval gi_interval_empty(void)

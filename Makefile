@@ -61,6 +61,7 @@ BUILD_DIR ?= build
 OBJECTS := $(BUILD_DIR)/interval.o $(BUILD_DIR)/common_factor.o $(BUILD_DIR)/remainder.o $(BUILD_DIR)/transcendental.o
 LIB := $(BUILD_DIR)/libgraphing.a
 SHARED_LIB := $(BUILD_DIR)/libgraphing.$(SHARED_EXT)
+EXACT_INPUTS_TEST := $(BUILD_DIR)/test_exact_inputs
 INTERVAL_TEST := $(BUILD_DIR)/test_interval
 COMMON_FACTOR_TEST := $(BUILD_DIR)/test_common_factor
 TRANSCENDENTAL_TEST := $(BUILD_DIR)/test_transcendental
@@ -76,7 +77,7 @@ LIB_OBJECTS := $(OBJECTS)
 GI_MAKEFILE_INPUTS := $(MAKEFILE_LIST)
 BUILD_CONFIG_KEYS := GI_MAKEFILE_INPUTS CC AR CPPFLAGS CFLAGS LDFLAGS LDLIBS MPFR_PREFIX GMP_PREFIX INTERVAL_SOURCE COMMON_FACTOR_SOURCE TRANSCENDENTAL_SOURCE REMAINDER_SOURCE
 $(foreach key,$(BUILD_CONFIG_KEYS),$(eval export GI_BUILD_$(key) := $($(key))))
-C_TEST_BINARIES := $(INTERVAL_TEST) $(COMMON_FACTOR_TEST) $(REMAINDER_TEST) $(TRANSCENDENTAL_TEST)
+C_TEST_BINARIES := $(EXACT_INPUTS_TEST) $(INTERVAL_TEST) $(COMMON_FACTOR_TEST) $(REMAINDER_TEST) $(TRANSCENDENTAL_TEST)
 export GI_BUILD_PRODUCTS := $(OBJECTS) $(BENCHMARK_OBJECTS) $(LIB) $(SHARED_LIB) $(BENCHMARK_LIB) $(C_TEST_BINARIES)
 BUILD_CONFIG := $(BUILD_DIR)/.build-config.json
 # Read-only during parsing, including make -n. Force changed configurations even
@@ -118,6 +119,7 @@ check-brand-copy:
 	python3 -m unittest discover -s "$(KERNEL_ROOT)/tests" -p test_brand_copy.py
 
 test-c: $(C_TEST_BINARIES)
+	$(EXACT_INPUTS_TEST)
 	$(INTERVAL_TEST)
 	$(COMMON_FACTOR_TEST)
 	$(REMAINDER_TEST)
@@ -146,6 +148,9 @@ $(SHARED_LIB): $(OBJECTS)
 	$(CC) $(SHARED_LDFLAGS) $(LDFLAGS) $^ $(LDLIBS) -o $@
 
 $(INTERVAL_TEST): $(KERNEL_ROOT)/tests/test_interval.c $(KERNEL_ROOT)/include/graphing/common_factor.h $(KERNEL_ROOT)/include/graphing/remainder.h $(LIB) | $(BUILD_DIR)
+	$(CC) $(CPPFLAGS) $(DEPFLAGS) $(CFLAGS) $< $(LIB) $(LDFLAGS) $(LDLIBS) -o $@
+
+$(EXACT_INPUTS_TEST): $(KERNEL_ROOT)/tests/test_exact_inputs.c $(LIB) | $(BUILD_DIR)
 	$(CC) $(CPPFLAGS) $(DEPFLAGS) $(CFLAGS) $< $(LIB) $(LDFLAGS) $(LDLIBS) -o $@
 
 $(COMMON_FACTOR_TEST): $(KERNEL_ROOT)/tests/test_common_factor.c $(KERNEL_ROOT)/include/graphing/common_factor.h $(LIB) | $(BUILD_DIR)
