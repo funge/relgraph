@@ -55,6 +55,24 @@ enum {
 
 gi_interval gi_interval_make(double lo, double hi);
 gi_interval gi_interval_point(double value);
+
+/*
+ * Least closed binary64 enclosures of exact integers/rationals. A rational is
+ * numerator / denominator, with a strictly positive uint64_t denominator;
+ * reduction is not required. Zero denominator or reversed exact bounds returns
+ * the empty interval (not an indication of a valid numeric value).
+ *
+ * These inputs cannot overflow binary64 or reach nonzero subnormals:
+ * 1/(2^64-1) <= |nonzero input| <= 2^63. Zero returns [+0, +0].
+ * No caller-side double conversion is needed. Rounding mode is unchanged;
+ * results do not depend on it or on MPFR settings. See docs/exact-inputs.md.
+ */
+gi_interval gi_interval_from_int64(int64_t value);
+gi_interval gi_interval_from_int64_bounds(int64_t lo, int64_t hi);
+gi_interval gi_interval_from_rational64(int64_t numerator, uint64_t denominator);
+gi_interval gi_interval_from_rational64_bounds(
+    int64_t lo_numerator, uint64_t lo_denominator,
+    int64_t hi_numerator, uint64_t hi_denominator);
 gi_interval gi_interval_empty(void);
 gi_interval gi_interval_whole(void);
 
