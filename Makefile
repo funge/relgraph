@@ -112,7 +112,7 @@ all: $(LIB) $(SHARED_LIB)
 
 shared: $(SHARED_LIB)
 
-test: check-brand-copy test-c
+test: check-brand-copy test-c test-parser
 
 check-brand-copy:
 	python3 "$(KERNEL_ROOT)/tools/check-brand-copy.py"
@@ -164,3 +164,7 @@ $(REMAINDER_TEST): $(KERNEL_ROOT)/tests/test_remainder.c $(LIB) | $(BUILD_DIR)
 
 clean:
 	rm -rf $(BUILD_DIR)
+
+.PHONY: test-parser
+test-parser:
+	PYTHONPATH="$(KERNEL_ROOT)/python" python3 -m unittest discover -s "$(KERNEL_ROOT)/tests" -p test_parser.py
