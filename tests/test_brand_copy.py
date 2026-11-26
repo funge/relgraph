@@ -39,6 +39,21 @@ class BrandCopyTests(unittest.TestCase):
             '[GIA](https://github.com/funge/gia); relgraph does not depend on GIA.'), [])
         self.assertEqual(brand.violations('Gia GIAExtra'), ['GIAExtra', 'Gia'])
 
+    def test_readme_technical_names_are_exact(self):
+        names = ('AGPL', 'GMP', 'Lean', 'MPFR', 'TestFlight', 'UI')
+        for name in names:
+            with self.subTest(name=name):
+                self.assertEqual(brand.violations(name), [])
+                # Neither a capitalized suffix nor a prefix is exempted.
+                for other in (name + 'Extra', 'Extra' + name):
+                    self.assertEqual(brand.violations(other), [other])
+        for other in ('Agpl', 'Gmp', 'LEAN', 'Mpfr', 'Testflight', 'Ui'):
+            with self.subTest(unapproved=other):
+                self.assertEqual(brand.violations(other), [other])
+        self.assertEqual(brand.violations(
+            'AGPL, GMP, Lean, MPFR, TestFlight and UI; Unexpected Copy.'),
+            ['Copy', 'Unexpected'])
+
     def test_preserves_code_and_destinations(self):
         self.assertEqual(brand.violations('`X + Y` [formula](https://example/X)\n```c\nX_API\n```'), [])
 
