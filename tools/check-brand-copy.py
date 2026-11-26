@@ -13,6 +13,12 @@ ROOT = Path(__file__).resolve().parents[1]
 PAGES = ('README.md', 'PRIVACY.md', 'SUPPORT.md')
 # Exact names, not broad capitalization patterns. Keep rationales reviewable.
 NAMES = {
+    'AGPL': 'license abbreviation in the public licensing statement',
+    'GMP': 'numeric dependency project name',
+    'Lean': 'proof assistant name in the related research description',
+    'MPFR': 'numeric dependency project name',
+    'TestFlight': 'official distribution service name',
+    'UI': 'explicitly retained abbreviation in the public repository scope description',
     'GIA': 'proper name of the related Generalized Interval Arithmetic research project',
     'HTTP': 'web protocol in the attribution address explanation',
     'HTTPS': 'secure web protocol in the attribution address explanation',
