@@ -10,7 +10,8 @@ bash tools/native-numerical-qualification.sh
 ```
 
 `all` builds static and shared `libgraphing` libraries; `shared` builds only the
-shared product; `test` runs all four native suites. `BUILD_DIR` may select a
+shared product; `test` runs the brand-copy checks and all five native suites. `test-c` runs
+only the native suites, including exact-input enclosure and optimality tests. `BUILD_DIR` may select a
 separate output directory. `MPFR_PREFIX` and `GMP_PREFIX` select dependency
 installations; Homebrew prefixes are detected on macOS when available.
 

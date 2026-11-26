@@ -60,7 +60,7 @@ establish implementation correctness.
 
 ## Validation
 
-Run all four native suites in optimized, debug and address/undefined sanitizer
+Run all five native suites in optimized, debug and address/undefined sanitizer
 modes. Retain endpoint/domain/signed-zero, exact-point, enclosure and numeric
 context controls. Consumers additionally validate ABI/layout, environment error
 handling and their complete rendering/classification behavior. Platform-specific
@@ -74,3 +74,14 @@ refinement, separate from the initial extraction. It conditionally preserves an
 existing sound upper, retains unsupported cases unchanged and does not certify
 definedness or continuity. Consumer dependency and release adoption remain
 separate from native qualification.
+
+
+## exact integer and rational constructors
+
+The [exact-input constructors](exact-inputs.md) return least binary64 enclosures
+for signed 64-bit integers and signed-64/unsigned-64 rational points or bounds.
+They use exact GMP rationals, toward-zero conversion and an exact comparison
+before an optional adjacent-value step. Their supported range excludes overflow
+and nonzero subnormals. Public headers remain free of GMP/MPFR object types.
+The independent exact-oracle suite checks enclosure and endpoint optimality;
+this is tested C code, not a formally verified implementation.
