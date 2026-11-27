@@ -112,7 +112,7 @@ all: $(LIB) $(SHARED_LIB)
 
 shared: $(SHARED_LIB)
 
-test: check-brand-copy test-c test-parser
+test: check-brand-copy test-c test-parser test-evaluation
 
 check-brand-copy:
 	python3 "$(KERNEL_ROOT)/tools/check-brand-copy.py"
@@ -168,3 +168,7 @@ clean:
 .PHONY: test-parser
 test-parser:
 	PYTHONPATH="$(KERNEL_ROOT)/python" python3 -m unittest discover -s "$(KERNEL_ROOT)/tests" -p test_parser.py
+
+.PHONY: test-evaluation
+test-evaluation:
+	PYTHONPATH="$(KERNEL_ROOT)/python" python3 -m unittest discover -s "$(KERNEL_ROOT)/tests" -p test_branches.py
