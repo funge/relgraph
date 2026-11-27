@@ -1,29 +1,16 @@
 # Copyright (c) 2026 John Funge
 # SPDX-License-Identifier: AGPL-3.0-only
-"""Caller-owned numeric operations and existing diagnostic callback contract."""
+"""Caller-owned evaluation callbacks; no cache, profile, loader or app state."""
 
 from __future__ import annotations
 from typing import Protocol
-from .values import _CInterval
+from .numeric_api import _NumericOps
+from .numeric import _IntervalCover
+from .values import _CInterval, _EvalResult, _EvalSet
 from .definedness import BoolInterval as _CBoolInterval
 
 
-class _IntervalOps(Protocol):
-    def is_empty(self, value: _CInterval) -> bool: ...
-    def make(self, lo: float, hi: float) -> _CInterval: ...
-    def point(self, value: float) -> _CInterval: ...
-    def neg(self, x: _CInterval) -> _CInterval: ...
-    def sqrt(self, x: _CInterval) -> _CInterval: ...
-    def add(self, x: _CInterval, y: _CInterval) -> _CInterval: ...
-    def sub(self, x: _CInterval, y: _CInterval) -> _CInterval: ...
-    def mul(self, x: _CInterval, y: _CInterval) -> _CInterval: ...
-    def hull(self, x: _CInterval, y: _CInterval) -> _CInterval: ...
-    def intersect(self, x: _CInterval, y: _CInterval) -> _CInterval: ...
-    def eq(self, x: _CInterval, y: _CInterval) -> _CBoolInterval: ...
-    def lt(self, x: _CInterval, y: _CInterval) -> _CBoolInterval: ...
-    def le(self, x: _CInterval, y: _CInterval) -> _CBoolInterval: ...
-    def gt(self, x: _CInterval, y: _CInterval) -> _CBoolInterval: ...
-    def ge(self, x: _CInterval, y: _CInterval) -> _CBoolInterval: ...
+class _IntervalOps(_NumericOps, Protocol):
     def record_operator_sections(
         self,
         name: str,
@@ -32,6 +19,40 @@ class _IntervalOps(Protocol):
         noncontinuous_sections: int = 0,
         missing_chart_sections: int = 0,
     ) -> None: ...
+
     def record_chart_loss(
         self, name: str, expression: str, reason: str, *, sections: int = 1
     ) -> None: ...
+
+    def periodic_interval_cover(
+        self,
+        value: _CInterval,
+        *,
+        phase_numerator: int,
+        period_numerator: int,
+        denominator: int,
+        boundary_continuous: bool,
+        max_sections: int,
+        fallback_continuous: bool,
+    ) -> _IntervalCover: ...
+
+
+class _ResultFactory(Protocol):
+    def __call__(
+        self,
+        interval: _CInterval,
+        defined: _CBoolInterval,
+        continuous: bool,
+        *,
+        constant: float | None = None,
+    ) -> _EvalResult: ...
+
+
+class _SetFactory(Protocol):
+    def __call__(
+        self,
+        branches: tuple[_EvalResult, ...],
+        defined: _CBoolInterval,
+        continuous: bool,
+        ops: _IntervalOps,
+    ) -> _EvalSet: ...
