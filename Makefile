@@ -177,3 +177,4 @@ test-evaluation:
 	PYTHONPATH="$(KERNEL_ROOT)/python" python3 -m unittest discover -s "$(KERNEL_ROOT)/tests" -p test_numeric_evaluation.py
 	PYTHONPATH="$(KERNEL_ROOT)/python" python3 -m unittest discover -s "$(KERNEL_ROOT)/tests" -p test_rational_discrete.py
 	PYTHONPATH="$(KERNEL_ROOT)/python" python3 -m unittest discover -s "$(KERNEL_ROOT)/tests" -p test_dispatch.py
+	PYTHONPATH="$(KERNEL_ROOT)/python" python3 -m unittest discover -s "$(KERNEL_ROOT)/tests" -p test_cells.py
