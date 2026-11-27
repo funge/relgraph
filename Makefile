@@ -173,3 +173,4 @@ test-parser:
 test-evaluation:
 	PYTHONPATH="$(KERNEL_ROOT)/python" python3 -m unittest discover -s "$(KERNEL_ROOT)/tests" -p test_branches.py
 	PYTHONPATH="$(KERNEL_ROOT)/python" python3 -m unittest discover -s "$(KERNEL_ROOT)/tests" -p test_definedness.py
+	PYTHONPATH="$(KERNEL_ROOT)/python" python3 -m unittest discover -s "$(KERNEL_ROOT)/tests" -p test_value_algebra.py
